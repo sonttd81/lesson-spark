@@ -17,6 +17,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PIdRouteImport } from './routes/p.$id'
 import { Route as ApiVocabImageRouteImport } from './routes/api/vocab-image'
 import { Route as ApiTestKeyRouteImport } from './routes/api/test-key'
+import { Route as ApiMcpHealthRouteImport } from './routes/api/mcp-health'
 import { Route as ApiLessonRouteImport } from './routes/api/lesson'
 import { Route as DotwellKnownOauthProtectedResourceRouteImport } from './routes/[.]well-known.oauth-protected-resource'
 import { Route as DotwellKnownOauthAuthorizationServerRouteImport } from './routes/[.]well-known.oauth-authorization-server'
@@ -64,6 +65,11 @@ const ApiTestKeyRoute = ApiTestKeyRouteImport.update({
   path: '/api/test-key',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMcpHealthRoute = ApiMcpHealthRouteImport.update({
+  id: '/api/mcp-health',
+  path: '/api/mcp-health',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiLessonRoute = ApiLessonRouteImport.update({
   id: '/api/lesson',
   path: '/api/lesson',
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/.well-known/oauth-authorization-server': typeof DotwellKnownOauthAuthorizationServerRoute
   '/.well-known/oauth-protected-resource': typeof DotwellKnownOauthProtectedResourceRoute
   '/api/lesson': typeof ApiLessonRoute
+  '/api/mcp-health': typeof ApiMcpHealthRoute
   '/api/test-key': typeof ApiTestKeyRoute
   '/api/vocab-image': typeof ApiVocabImageRoute
   '/p/$id': typeof PIdRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByTo {
   '/.well-known/oauth-authorization-server': typeof DotwellKnownOauthAuthorizationServerRoute
   '/.well-known/oauth-protected-resource': typeof DotwellKnownOauthProtectedResourceRoute
   '/api/lesson': typeof ApiLessonRoute
+  '/api/mcp-health': typeof ApiMcpHealthRoute
   '/api/test-key': typeof ApiTestKeyRoute
   '/api/vocab-image': typeof ApiVocabImageRoute
   '/p/$id': typeof PIdRoute
@@ -139,6 +147,7 @@ export interface FileRoutesById {
   '/.well-known/oauth-authorization-server': typeof DotwellKnownOauthAuthorizationServerRoute
   '/.well-known/oauth-protected-resource': typeof DotwellKnownOauthProtectedResourceRoute
   '/api/lesson': typeof ApiLessonRoute
+  '/api/mcp-health': typeof ApiMcpHealthRoute
   '/api/test-key': typeof ApiTestKeyRoute
   '/api/vocab-image': typeof ApiVocabImageRoute
   '/p/$id': typeof PIdRoute
@@ -157,6 +166,7 @@ export interface FileRouteTypes {
     | '/.well-known/oauth-authorization-server'
     | '/.well-known/oauth-protected-resource'
     | '/api/lesson'
+    | '/api/mcp-health'
     | '/api/test-key'
     | '/api/vocab-image'
     | '/p/$id'
@@ -173,6 +183,7 @@ export interface FileRouteTypes {
     | '/.well-known/oauth-authorization-server'
     | '/.well-known/oauth-protected-resource'
     | '/api/lesson'
+    | '/api/mcp-health'
     | '/api/test-key'
     | '/api/vocab-image'
     | '/p/$id'
@@ -189,6 +200,7 @@ export interface FileRouteTypes {
     | '/.well-known/oauth-authorization-server'
     | '/.well-known/oauth-protected-resource'
     | '/api/lesson'
+    | '/api/mcp-health'
     | '/api/test-key'
     | '/api/vocab-image'
     | '/p/$id'
@@ -206,6 +218,7 @@ export interface RootRouteChildren {
   DotwellKnownOauthAuthorizationServerRoute: typeof DotwellKnownOauthAuthorizationServerRoute
   DotwellKnownOauthProtectedResourceRoute: typeof DotwellKnownOauthProtectedResourceRoute
   ApiLessonRoute: typeof ApiLessonRoute
+  ApiMcpHealthRoute: typeof ApiMcpHealthRoute
   ApiTestKeyRoute: typeof ApiTestKeyRoute
   ApiVocabImageRoute: typeof ApiVocabImageRoute
   PIdRoute: typeof PIdRoute
@@ -272,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiTestKeyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/mcp-health': {
+      id: '/api/mcp-health'
+      path: '/api/mcp-health'
+      fullPath: '/api/mcp-health'
+      preLoaderRoute: typeof ApiMcpHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/lesson': {
       id: '/api/lesson'
       path: '/api/lesson'
@@ -328,6 +348,7 @@ const rootRouteChildren: RootRouteChildren = {
   DotwellKnownOauthProtectedResourceRoute:
     DotwellKnownOauthProtectedResourceRoute,
   ApiLessonRoute: ApiLessonRoute,
+  ApiMcpHealthRoute: ApiMcpHealthRoute,
   ApiTestKeyRoute: ApiTestKeyRoute,
   ApiVocabImageRoute: ApiVocabImageRoute,
   PIdRoute: PIdRoute,
